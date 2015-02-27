@@ -1,0 +1,32 @@
+{% extends 'wall/base.html' %}
+
+{% block content %}
+
+<h1>My wall of posts</h1>
+
+<a href={% url 'post_new' %}>new post</a>
+
+{% for post in wall_posts %}
+<div class='wall-post'>
+    <a href={% url 'post_detail' post.pk %}><h2>{{ post.title }}</h2></a>
+    <p class='text'>{{ post.text }}</p>
+    <p class='fotter'>by {{ post.author.first_name }} at <span class='date'>{{ post.created_date }}</span></p>
+    <a href={% url 'comment_new' post.pk %}>comment</a>
+</div>
+
+{% if post.comment_set.all %}
+<h2>Comments</h2>
+
+    {% for comment in post.comment_set.all %}
+    <div class='comment-post'>
+        <p class='text'>{{ comment.text }}</p>
+        <p class='fotter'>By {{ comment.author }} at <span class='date'>{{ comment.created_date }} ({{ comment.email }} - {{ comment.website }})</span></p>
+    </div>    
+    {% endfor %}
+
+{% endif %}
+
+
+{% endfor %}
+
+{% endblock %}

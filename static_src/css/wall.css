@@ -1,0 +1,64 @@
+body {
+    padding-left: 15px;
+}
+
+h1 {
+    color: orange;
+}
+
+.wall-post {
+    border: 2px solid;
+    width: 500px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.wall-post h2 {
+    padding-left: 5px;
+    text-transform: uppercase;
+}
+
+.wall-post .text {
+    padding: 5px;
+}
+
+.wall-post .fotter {
+    font-size: 10px;
+    padding-left: 5px;
+}
+
+.wall-post .fotter .date {
+    font-style: italic;
+}
+
+
+
+.comment-post {
+    border: 1px dotted;
+    width: 470px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 30px;
+}
+
+.comment-post h3 {
+    padding-left: 5px;
+    text-transform: uppercase;
+}
+
+.comment-post .text {
+    padding: 5px;
+}
+
+.comment-post .fotter {
+    font-size: 10px;
+    padding-left: 5px;
+}
+
+.comment-post .fotter .date {
+    font-style: italic;
+}
