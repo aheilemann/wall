@@ -6,5 +6,10 @@ urlpatterns = patterns('',
     url(r'^example/$', views.example_html_view, name='example'),
     url(r'^post/new/$', views.post_write_new, name='post_new'),
     url(r'^post/(?P<pk>[0-9]+)/$', views.post_detail, name='post_detail'),
-    url(r'^post/(?P<pk>[0-9]+)/newComment/$', views.comment_write_new, name='comment_new'),
+    url(
+        r'^post/(?P<pk>[0-9]+)/newComment/$',
+        views.comment_write_new,
+        name='comment_new'
+    ),
+    url(r'^banned/$', views.user_banned, name='user_banned')
 )

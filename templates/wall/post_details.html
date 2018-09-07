@@ -7,20 +7,28 @@
 <div class='wall-post'>
     <h2>{{ post.title }}</h2>
     <p class='text'>{{ post.text }}</p>
-    <p class='fotter'>by {{ post.author.first_name }} at <span class='date'>{{ post.created_date }}</span></p>
-</div>
+    <p class='footer'>Posted by {{ post.author.first_name }} at <span class='date'>{{ post.created_date }}</span></p>
 
-{% if post.comment_set.all %}
-<h2>Comments</h2>
 
-	{% for comment in post.comment_set.all %}
+{% if post.comments.all %}
+<h3>Comments</h3>
+
+	{% for comment in post.comments.all %}
     <div class='comment-post'>
     <p class='text'>{{ comment.text }}</p>
-    <p class='fotter'>By {{ comment.author }} at <span class='date'>{{ comment.created_date }} ({{ comment.email }} - {{ comment.website }})</span></p>
-	</div>    
+    <p class='footer'>
+            Posted by {{ comment.author }}
+            at <span class='date'>{{ comment.created_date }}</span>
+            <span class="email"><a href="mailto: {{ comment.email }}">{{ comment.email }}</span>
+            <span class="website"><a href="{{ comment.website }}">{{ comment.website }}</a></span>
+    </p>
+	</div>
     {% endfor %}
 
 {% endif %}
+
+    <div class="newComment"><a href={% url 'comment_new' post.pk %}>New Comment</a></div>
+</div>
 
 <a href={% url 'post_wall' %}>back to wall</a>
 

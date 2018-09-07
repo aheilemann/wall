@@ -1,8 +1,6 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
-
+from django.shortcuts import render, redirect
 from .forms import PostForm, CommentForm
-from .models import Post, Comment
+from .models import Post, UserBlacklist
 
 
 def example_html_view(request):
@@ -10,9 +8,9 @@ def example_html_view(request):
 
 
 def post_list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.prefetch_related('comments').all()
     post = Post.objects.get(pk=1)
-    comments = post.comment_set.all()
+    comments = post.comments.all()
 
     return render(
         request, 
@@ -24,7 +22,6 @@ def post_list(request):
 
 def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
-    comments = post.comment_set.all()
 
     return render(
         request,
@@ -35,12 +32,13 @@ def post_detail(request, pk):
 
 
 def post_write_new(request):
-    form = PostForm()
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
+            if post.author.userblacklist:
+                return redirect('user_banned')
             post.save()
             return redirect('post_wall')
     else:
@@ -56,7 +54,6 @@ def post_write_new(request):
 
 def comment_write_new(request, pk):
     post = Post.objects.get(pk=pk)
-    form = CommentForm()
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -67,7 +64,6 @@ def comment_write_new(request, pk):
     else:
         form = CommentForm()
 
-
     return render(
         request, 
         'wall/comment_new.html', {
@@ -76,3 +72,10 @@ def comment_write_new(request, pk):
     )
 
 
+def user_banned(request):
+    return render(
+        request,
+        'wall/user_banned.html', {
+            'user': request.user,
+        }
+    )

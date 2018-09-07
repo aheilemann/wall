@@ -22,6 +22,8 @@ SECRET_KEY = 'CHANGE_ME'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+INTERNAL_IPS = ('127.0.0.1', '10.0.2.2')
+
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -38,7 +40,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'wall',
     'debug_toolbar',
-    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -72,6 +73,7 @@ DATABASES = {
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
+#europe/copenhagen
 
 USE_I18N = True
 
@@ -95,4 +97,3 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = {
     os.path.join(BASE_DIR, 'templates')
 }
-
