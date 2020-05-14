@@ -1,0 +1,14 @@
+steps:
+# Deploy an image from Container Registry to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'run'
+  - 'deploy'
+  - 'wall'
+  - '--image'
+  - 'gcr.io/django-wall/wall'
+  - '--region'
+  - 'europe-north1'
+  - '--platform'
+  - 'managed'
+  - '--allow-unauthenticated'

@@ -1,0 +1,3 @@
+gcloud builds submit --tag gcr.io/django-wall/wall .
+gcloud run deploy django-wall --image gcr.io/django-wall/wall --platform managed
+gcloud builds submit --config cloudbuild.yaml - fails on deploy, might be fixed now. cloudbuild.yaml was made for this, can possibly delete if this is not used

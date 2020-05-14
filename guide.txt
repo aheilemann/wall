@@ -1,2 +1,0 @@
-cd /Users/andersheilemann/Dropbox/work/programming/python/django/djangoSchool
-. djangoSchool/bin/activate
